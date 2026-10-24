@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>BLOOD X SADIQ | Blood Strike</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+:root {
+  --red: #ff2438;
+  --dark: #080808;
+  --panel: #111113;
+  --muted: #a2a2aa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 10% 10%, #ff24380c, transparent 40%),
+    radial-gradient(ellipse at 90% 70%, #ff243810, transparent 35%);
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+/* NAVBAR */
+.navbar {
+  height: 68px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #080808eF;
+  border-bottom: 1px solid #ffffff12;
+  backdrop-filter: blur(16px);
+}
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.logo span { color: var(--red); }
+.home-btn {
+  border: 1px solid #ff24384c;
+  background: #ff243811;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: .3s;
+}
+.home-btn:hover {
+  background: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px #ff24384d;
+}
+
+/* COVER */
+.cover-wrap {
+  max-width: 1150px;
+  padding: 24px 20px 0;
+  margin: auto;
+}
+.cover {
+  height: 340px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ffffff1a;
+  border-radius: 16px;
+  background: #171719;
+  isolation: isolate;
+}
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, #090909cc, #09090925 65%, #09090970),
+    linear-gradient(0deg, #080808 0%, transparent 75%),
+    url("pp2.png") center 35% / cover no-repeat;
+  transform: scale(1.04);
+  animation: coverZoom 16s ease-in-out infinite alternate;
+}
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, #ff24380b 50%, transparent 65%);
+}
+.cover-label {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #ffb7bd;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+.cover-bottom {
+  position: absolute;
+  bottom: 25px;
+  left: 28px;
+  right: 28px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 15px;
+}
+.cover-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(22px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 4px 20px #000;
+}
+.cover-title span { color: var(--red); }
+.cover-subtitle {
+  color: #d0d0d0;
+  margin-top: 8px;
+  font-size: 15px;
+}
+.status {
+  border: 1px solid #ff24384f;
+  border-radius: 30px;
+  background: #10090be8;
+  color: #ff6978;
+  padding: 8px 12px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pulse {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  margin-right: 6px;
+  box-shadow: 0 0 12px var(--red);
+  animation: pulse 1.5s infinite;
+}
+
+/* PROFILE */
+.container { max-width: 1050px; margin: auto; padding: 0 24px; }
+.profile-row {
+  display: flex;
+  align-items: end;
+  gap: 22px;
+  margin: -62px 0 28px 22px;
+  position: relative;
+  z-index: 2;
+}
+.avatar-frame {
+  width: 142px;
+  height: 142px;
+  padding: 5px;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #ff6674, #ff2438 50%, #5a1018);
+  box-shadow: 0 0 35px #ff243827;
+  flex-shrink: 0;
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  border: 3px solid #0b0b0d;
+  object-fit: cover;
+  background: #19191d;
+}
+.profile-info { padding-bottom: 8px; min-width: 0; }
+.profile-info h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(19px, 3vw, 28px);
+  overflow-wrap: anywhere;
+}
+.handle { color: var(--muted); margin-top: 6px; font-size: 15px; }
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #ff243815;
+  border: 1px solid #ff24384a;
+  color: #ff6777;
+  border-radius: 5px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* CONTENT CARDS */
+.section { margin: 38px 0; }
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.section-heading i { color: var(--red); font-size: 19px; }
+.section-heading h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(16px, 2.5vw, 21px);
+}
+.section-heading::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, #ff243850, transparent);
+}
+.card {
+  background: linear-gradient(145deg, #151517, #0e0e10);
+  border: 1px solid #ffffff12;
+  border-radius: 13px;
+  padding: 24px;
+  transition: border-color .35s, transform .35s, box-shadow .35s;
+}
+.card:hover {
+  border-color: #ff243853;
+  box-shadow: 0 12px 40px #0005;
+  transform: translateY(-4px);
+}
+.bio {
+  font-family: 'Hind Siliguri', sans-serif;
+  color: #d2d2d8;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.bio strong { color: white; }
+.red-text { color: var(--red); }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.stat { text-align: center; padding: 24px 10px; }
+.stat i { color: var(--red); font-size: 22px; margin-bottom: 12px; }
+.stat h3 { font-family: 'Rajdhani', sans-serif;; font-size: 17px; }
+.stat p { color: var(--muted); font-size: 13px; margin-top: 7px; }
+
+.game-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.game-card h3 { font-size: 22px; margin-bottom: 8px; }
+.game-card p { color: var(--muted); line-height: 1.6; }
+.game-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  color: var(--red);
+  border: 1px solid #ff24383b;
+  background: #ff243811;
+}
+.game-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 17px;
+  padding: 11px 16px;
+  border-radius: 7px;
+  background: var(--red);
+  color: white;
+  font-weight: 700;
+  transition: .3s;
+}
+.game-link:hover { background: #d91328; box-shadow: 0 0 25px #ff24384a; }
+
+.quote {
+  border-left: 3px solid var(--red);
+  padding: 8px 0 8px 18px;
+  color: #ddd;
+  font-size: 19px;
+  line-height: 1.6;
+}
+.quote span { display: block; margin-top: 8px; font-size: 13px; color: var(--red); }
+
+.footer {
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 55px;
+  border-top: 1px solid #ffffff12;
+  color: #8e8e97;
+  font-size: 13px;
+}
+.footer strong { color: white; font-family: Orbitron, sans-serif; }
+.footer span { color: var(--red); }
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity .75s ease, transform .75s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 12px var(--red); }
+  50% { opacity: .45; box-shadow: 0 0 3px var(--red); }
+}
+@keyframes coverZoom {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.12); }
+}
+@keyframes avatarFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 600px) {
+  .navbar { height: 60px; padding: 0 17px; }
+  .logo { font-size: 20px; }
+  .home-btn { padding: 8px 11px; font-size: 13px; }
+  .cover-wrap { padding: 14px 12px 0; }
+  .cover { height: 245px; border-radius: 12px; }
+  .cover-label { top: 16px; left: 16px; font-size: 9px; }
+  .cover-bottom { left: 17px; right: 17px; bottom: 18px; }
+  .cover-subtitle { font-size: 13px; }
+  .status { font-size: 10px; padding: 7px 9px; }
+  .container { padding: 0 15px; }
+  .profile-row { gap: 13px; margin: -43px 0 25px 10px; }
+  .avatar-frame { width: 102px; height: 102px; border-radius: 17px; padding: 4px; }
+  .avatar { border-radius: 13px; }
+  .profile-info { padding-bottom: 3px; }
+  .profile-info h1 { font-size: 17px; }
+  .handle { font-size: 13px; }
+  .badge { font-size: 9px; padding: 4px 7px; margin-top: 7px; }
+  .section { margin: 29px 0; }
+  .card { padding: 18px; }
+  .stats { gap: 8px; }
+  .stat { padding: 18px 5px; }
+  .stat h3 { font-size: 14px; }
+  .stat p { font-size: 11px; }
+  .stat i { font-size: 19px; }
+  .game-card { grid-template-columns: 1fr; }
+  .game-icon { width: 52px; height: 52px; font-size: 22px; }
+  .bio { font-size: 15px; font-family: 'Hind Siliguri', sans-serif; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+<nav class="navbar">
+  <a class="logo" href="index.html">BLOOD <span>X</span> SADIQ</a>
+  <a class="home-btn" href="index.html"><i class="fa-solid fa-house"></i> HOME</a>
+</nav>
+
+<header class="cover-wrap">
+  <div class="cover">
+    <div class="cover-label">PLAYER PROFILE / 001</div>
+    <div class="cover-bottom">
+      <div>
+        <div class="cover-title">BLOOD <span>STRIKE</span></div>
+        <p class="cover-subtitle">ENTER THE BATTLE. OWN THE ARENA.</p>
+      </div>
+      <div class="status"><span class="pulse"></span>GAMER PROFILE</div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="profile-row reveal">
+    <div class="avatar-frame">
+      <img class="avatar" src="logo1.png"
+           alt="BLOOD X SADIQ Profile Picture">
+    </div>
+    <div class="profile-info">
+      <h1>BLOOD X SADIQ</h1>
+      <p class="handle">585483266061</p>
+      <span class="badge"><i class="fa-solid fa-shield-halved"></i> BLOOD STRIKE PLAYER</span>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <i class="fa-solid fa-user-astronaut"></i>
+      <h2>ABOUT THE PLAYER</h2>
+    </div>
+    <div class="card">
+      <p class="bio">
+        Welcome to my Battle-field. 🔥<br>
+        আমি <strong> SADIQ</strong> — একজন গেমিং লাভার ।
+        প্রতিটা ম্যাচে নতুন চ্যালেঞ্জ, প্রতিটা ব্যাটলে নিজের সেরাটা দেওয়াই
+        আমার লক্ষ্য । <span class="red-text">Play hard. Stay legendary.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <i class="fa-solid fa-crosshairs"></i>
+      <h2>PLAYER IDENTITY</h2>
+    </div>
+    <div class="stats">
+      <div class="card stat">
+        <i class="fa-solid fa-gamepad"></i>
+        <h3>Blood Strike</h3>
+        <p>MAIN GAME</p>
+      </div>
+      <div class="card stat">
+        <i class="fa-solid fa-fire"></i>
+        <h3>Rusher</h3>
+        <p>PLAY STYLE</p>
+      </div>
+      <div class="card stat">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>Competitive</h3>
+        <p>MENTALITY</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <i class="fa-solid fa-trophy"></i>
+      <h2>MY BATTLEFIELD</h2>
+    </div>
+    <div class="card game-card">
+      <div>
+        <h3>Ready for the next <span class="red-text">battle?</span></h3>
+        <p>Explore the official Blood Strike website for game updates,
+        events and announcements.</p>
+        <a class="game-link" href="https://www.blood-strike.com/"
+           target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          OFFICIAL WEBSITE
+        </a>
+      </div>
+      <div class="game-icon"><i class="fa-solid fa-crosshairs"></i></div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <div class="section-heading">
+      <i class="fa-solid fa-quote-left"></i>
+      <h2>MY MINDSET</h2>
+    </div>
+    <div class="card">
+      <p class="quote">
+        “I don't enter the battlefield to lose.
+        I enter to make my name legendary.”
+        <span>— BLOOD X SADIQ</span>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <strong>BLOOD <span>X</span> SADIQ</strong>
+  <p style="margin-top:9px;">© <span id="year"></span> BLOOD X SADIQ. All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
+</script>
+</body>
+</html>
